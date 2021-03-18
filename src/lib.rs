@@ -30,28 +30,28 @@
 /// # }
 /// ```
 pub fn strtok<'a>(string: &'_ mut &'a str, delimiter: char) -> &'a str {
-    if let Some(i) = string.find(delimiter) {
-        let prefix = &string[..i];
-        let suffix = &string[(i + delimiter.len_utf8())..];
-        *string = suffix;
-        prefix
-    } else {
-        let prefix = *string;
-        *string = "";
-        prefix
-    }
+  if let Some(i) = string.find(delimiter) {
+    let prefix = &string[..i];
+    let suffix = &string[(i + delimiter.len_utf8())..];
+    *string = suffix;
+    prefix
+  } else {
+    let prefix = *string;
+    *string = "";
+    prefix
+  }
 }
 
 #[cfg(test)]
 mod tests {
-    use super::*;
+  use super::*;
 
-    #[test]
-    fn test_strtok() {
-        let mut hello_world = "Hello world!";
-        let hello = strtok(&mut hello_world, ' ');
+  #[test]
+  fn test_strtok() {
+    let mut hello_world = "Hello world!";
+    let hello = strtok(&mut hello_world, ' ');
 
-        assert_eq!(hello, "Hello");
-        assert_eq!(hello_world, "world!");
-    }
+    assert_eq!(hello, "Hello");
+    assert_eq!(hello_world, "world!");
+  }
 }
